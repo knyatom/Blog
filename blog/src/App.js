@@ -15,7 +15,14 @@ function App() {
    // 글제목변경(['여자 코드 추천','강남 라면맛집','엑셀독학']);
    var newArray=[...글제목];  // deepCopy
     newArray[0]='여자코드 추천';
+    newArray[2]='리액트 실습';
     글제목변경(newArray);
+  }
+  function 정렬하기(){
+    var newArray=[...글제목];  
+    const sortArray= newArray.sort();
+    글제목변경(sortArray);
+    console.log(sortArray)
   }
 
   return (
@@ -23,8 +30,10 @@ function App() {
       <div className="black-nav">
         <div> 개발 Blog</div>
       </div>
-      <button onClick={ 제목바꾸기 }>
-      제목 변경</button>
+      <button onClick={ 제목바꾸기 }>    제목 변경</button>
+      <button onClick={ 정렬하기 }>      정렬하기</button>
+      
+
       <div className="list">
         <h3>{글제목[0]} 
           <span onClick={ ()=>{따봉변경(따봉+1)} } >👍</span> {따봉} 
