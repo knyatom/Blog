@@ -59,14 +59,15 @@ function App() {
       </div> */}
 
       {
-        글제목.map(글 =>
-          <div className="list">
+        글제목.map(글 =>(
+          <div className="list" key={글}>
             <h3>{글}
               <span onClick={() => { 따봉변경(따봉 + 1) }} >👍</span> {따봉}
             </h3>                       
             <p>2월 17일 발행</p>
             <hr />
           </div>
+        )
         )
       }
 
