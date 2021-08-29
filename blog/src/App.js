@@ -8,8 +8,21 @@ function App() {
 
   let [글제목, 글제목변경] = useState(['남자 코드 추천', '강남 우동맛집', '파이션독학']);
   let posts = "강남 고기 맛집";
-  let [따봉, 따봉변경] = useState(0);
-  let [modal,modal변경]=useState(false)
+  let [따봉, 따봉변경] = useState([0,0,0]);
+  let [modal,modal변경]=useState(false);
+
+  let [isClicked, setClicked]=useState([false,false,false]);
+
+  const handleClick = idx => {    
+    let isClick2=isClicked.map((element, index) => {     
+      return index === idx ? !element : element;    
+    });
+    
+   // console.log(isClick2);
+    setClicked(isClicked=[...isClick2]);
+    // console.log(따봉[idx]);
+    // isClick2[idx]?따봉변경(따봉[idx]+1):따봉변경(따봉)
+  };
 
   function 제목바꾸기() {
     // 글제목변경(['여자 코드 추천','강남 라면맛집','엑셀독학']);
@@ -59,12 +72,12 @@ function App() {
       </div> */}
 
       {
-        글제목.map(글 =>(
+        글제목.map((글,i) =>(
           <div className="list" key={글}>
             <h3>{글}
-              <span onClick={() => { 따봉변경(따봉 + 1) }} >👍</span> {따봉}
+              <span onClick={ ()=>{handleClick(i)} } >👍</span> {따봉}             
             </h3>                       
-            <p>2월 17일 발행</p>
+            <p>2월 17일 발행 {isClicked} </p>
             <hr />
           </div>
         )
