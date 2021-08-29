@@ -1,8 +1,7 @@
 /* eslint-disable */
 
 import React, { useState } from "react";
-import "./App.css";
-import logo from "./logo.svg";
+
 
 function App() {
   let [글제목, 글제목변경] = useState([
@@ -12,7 +11,15 @@ function App() {
   ]);
   let posts = "강남 고기 맛집";
   let [따봉, 따봉변경] = useState(0);
+
+  let [isClicked, setClicked]=useState('false');
+ 
   let [modal, modal변경] = useState(false);
+
+ const 따봉추가=(i)=>{   
+    
+    setClicked({isClicked:'true'});
+ }
 
   function 반복된UI(){
     var 어레이=[];
@@ -65,19 +72,15 @@ function App() {
         <hr />
       </div> */}
 
-      {글제목.map(function (글) {
+      {글제목.map(function (글,i) {
         return (
           <div className="list">
-            <h3>
-              {글}{" "}
-              <span
-                onClick={() => {
-                  따봉변경(따봉 + 1);
-                }}
+            <h3>        {글}
+              <span key={i}
+                onClick={()=>따봉추가(i)}
               >
                 👍
-              </span>{" "}
-              {따봉}
+              </span>  {따봉} {isClicked}
             </h3>
             <p>2월 17일 발행</p>
             <hr />
@@ -92,17 +95,18 @@ function App() {
       >
         모달
       </button>
-      {modal == true ? <Modal></Modal> : null}
+      {
+        modal == true ? <Modal 글제목={글제목}></Modal> : null}
 
       {반복된UI()}
     </div>
   );
 }
 
-function Modal() {
+function Modal(props) {
   return (
     <div className="modal">
-      <h2>제목</h2>
+      <h2>{props.글제목}</h2>
       <p>날자</p>
       <p>상세내용</p>
     </div>
